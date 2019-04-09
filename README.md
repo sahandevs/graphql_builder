@@ -1,22 +1,32 @@
-A library for Dart developers.
+Generate GraphQL queries in dart.
 
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
-
-## Usage
-
-A simple usage example:
-
+## Example
+this code:
 ```dart
-import 'package:graphql_builder/graphql_builder.dart';
+Document()
+    .add(Query(name: "test")
+        .addSelection(Field("title"))
+        .addSelection(Field("name"))
+        .addSelection(FragmentSpread("frag1")))
+    .add(Fragment("frag1", TypeCondition("Cat"))
+        .addSelection(Field("id"))
+        .addSelection(Field("name")))
+    .bake()
+```
+will generate this query:
+```
+query test {
+  title
+  name
+  ...frag1
+} 
 
-main() {
-  var awesome = new Awesome();
+fragment frag1 on Cat {
+  id
+  name
 }
 ```
 
-## Features and bugs
+## Usage
 
-Please file feature requests and bugs at the [issue tracker][tracker].
-
-[tracker]: http://example.com/issues/replaceme
+add `graphql_builder: ^1.0.0` to your dependencies
