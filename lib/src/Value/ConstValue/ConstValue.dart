@@ -1,5 +1,6 @@
 import 'package:graphql_builder/src/Value/Value.dart';
 
-abstract class VariableValue extends Value {
-
+abstract class Const extends Value {
+  
 }
+

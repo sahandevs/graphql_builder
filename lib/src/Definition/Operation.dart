@@ -1,14 +1,14 @@
 import 'package:graphql_builder/src/Definition/Definition.dart';
+import 'package:graphql_builder/src/Definition/VariableDefinition.dart';
 import 'package:graphql_builder/src/Directive/Directive.dart';
 import 'package:graphql_builder/src/Selection/Selection.dart';
-import 'package:graphql_builder/src/Value/VariableValue.dart';
 
 abstract class Operation extends Definition {
   OperationType get type;
 
   List<Directive> directives;
   List<Selection> selections;
-  List<VariableValue> variables;
+  List<VariableDefinition> variables;
 
   Operation({this.variables});
 
@@ -24,7 +24,7 @@ abstract class Operation extends Definition {
     return this;
   }
 
-  Operation addVariable(VariableValue variable) {
+  Operation addVariable(VariableDefinition variable) {
     if (variables == null) variables = [];
     variables.add(variable);
     return this;
