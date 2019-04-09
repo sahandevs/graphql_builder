@@ -7,4 +7,9 @@ class Variable extends Value {
   Variable(String name)
       : this.name = Name(name),
         super();
+
+  @override
+  String bake() {
+    return "\$${name.bake()}";
+  }
 }

@@ -2,9 +2,14 @@ import 'package:graphql_builder/src/Base.dart';
 import 'package:graphql_builder/src/Name.dart';
 
 class TypeCondition extends Base {
+  Name typeName;
 
-  final Name typeName;
+  TypeCondition(String name) {
+    this.typeName = Name(name);
+  }
 
-  TypeCondition(this.typeName);
-
+  @override
+  String bake() {
+    return "on ${typeName.bake()}";
+  }
 }

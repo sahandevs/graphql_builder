@@ -4,7 +4,6 @@ import 'package:graphql_builder/src/Name.dart';
 import 'package:graphql_builder/src/Selection/Selection.dart';
 
 class Field extends Selection {
-
   Name alias;
   final Name name;
   List<Argument> arguments;
@@ -31,4 +30,19 @@ class Field extends Selection {
     return this;
   }
 
+  @override
+  String bake() {
+    var _alias = alias != null && alias.value.isNotEmpty ? "${alias.bake()}:" : "";
+
+    var _arguments = (arguments ?? []).map((item) => item.bake()).join(",");
+    _arguments = _arguments.isEmpty ? "" : "($_arguments)";
+    
+    var _directives = (directives ?? []).map((item) => item.bake()).join(" ");
+    _directives = _directives.isNotEmpty ? " $directives" : "";
+
+    assert(selections != null && selections.isNotEmpty);
+    var _selections = selections.map((item) => item.bake()).join(" ");
+
+    return "$_alias${name.bake()}$_arguments$_directives {$_selections}";
+  }
 }

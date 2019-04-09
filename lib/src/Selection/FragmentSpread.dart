@@ -13,5 +13,12 @@ class FragmentSpread extends Selection {
     directives.add(directive);
     return this;
   }
-  
+
+  @override
+  String bake() {
+    var _directives = (directives ?? []).map((item) => item.bake()).join(" ");
+    _directives = _directives.isNotEmpty ? " $directives" : "";
+
+    return "...${name.bake()} $_directives";
+  }
 }

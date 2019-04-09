@@ -29,6 +29,33 @@ abstract class Operation extends Definition {
     variables.add(variable);
     return this;
   }
+
+  String get typeName {
+    assert(type != null);
+    switch (type) {
+      case OperationType.Query: return "query";
+      case OperationType.Mutation: return "mutation";
+      case OperationType.Subscription: return "subscription";
+    }
+    return "";
+  }
+
+    @override
+  String bake() {
+    var _name = name != null && name.value.isNotEmpty ? " ${name.bake()}" : "";
+
+    var _directives = (directives ?? []).map((item) => item.bake()).join(" ");
+    _directives = _directives != "" ? " $directives" : "";
+
+    assert(selections != null && selections.isNotEmpty);
+    var _selections = selections.map((item) => item.bake()).join(" ");
+
+    var _variables = (variables ?? []).map((item) => item.bake()).join(",");
+    _variables = _variables.isEmpty ? "" : "($_variables)";
+
+    return "$typeName $_name$_variables$_directives {$_selections}";
+  }
+
 }
 
 class Query extends Operation {

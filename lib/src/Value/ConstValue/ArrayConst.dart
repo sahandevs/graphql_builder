@@ -7,4 +7,10 @@ class ArrayConst extends Const {
 
   ArrayConst(this.values);
 
+  @override
+  String bake() {
+    var _values = (values ?? []).map((item) => item.bake()).join(",");
+    return "[$_values]";
+  }
+
 }

@@ -9,4 +9,9 @@ class Argument extends Base {
 
   Argument(String name, this.value): this.name = Name(name);
 
+  @override
+  String bake() {
+    return "${name.bake()}:${value.bake()}";
+  }
+
 }
