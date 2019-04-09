@@ -1,5 +1,5 @@
 Build GraphQL queries in dart.
-
+[![Build Status](https://travis-ci.com/SahandAkbarzadeh/graphql_builder.svg?branch=master)](https://travis-ci.com/SahandAkbarzadeh/graphql_builder)
 ## Example
 this code:
 ```dart
