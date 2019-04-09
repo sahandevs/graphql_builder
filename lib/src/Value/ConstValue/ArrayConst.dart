@@ -5,7 +5,7 @@ class ArrayConst extends Const {
 
   List<Value> values;
 
-  ArrayConst(this.values);
+  ArrayConst(this.values): assert(values != null);
 
   @override
   String bake() {
