@@ -53,7 +53,7 @@ abstract class Operation extends Definition {
     var _variables = (variables ?? []).map((item) => item.bake()).join(",");
     _variables = _variables.isEmpty ? "" : "($_variables)";
 
-    return "$typeName $_name$_variables$_directives {$_selections}";
+    return "$typeName$_name$_variables$_directives {$_selections}";
   }
 
 }
