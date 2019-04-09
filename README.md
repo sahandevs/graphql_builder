@@ -1,4 +1,4 @@
-Generate GraphQL queries in dart.
+Build GraphQL queries in dart.
 
 ## Example
 this code:
