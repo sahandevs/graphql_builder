@@ -8,7 +8,7 @@ class SkipDirective extends Directive {
   @override
   Name get name => Name("skip");
 
-  IncludeDirective(Value condition) {
+  SkipDirective(Value condition) {
     this.argument = Argument("if", condition);
   }
   

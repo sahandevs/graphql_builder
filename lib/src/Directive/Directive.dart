@@ -8,6 +8,6 @@ abstract class Directive extends Base {
 
   @override
   String bake() {
-    return "${name.bake()}(${argument.bake()})";
+    return "@${name.bake()}(${argument.bake()})";
   }
 }
