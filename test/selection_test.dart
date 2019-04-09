@@ -51,7 +51,7 @@ void main() {
               .addDirective(IncludeDirective(Variable("var1")))
               .bake(),
           "... @include(if:\$var1) {id name}");
-          expect(
+      expect(
           InlineFragment()
               .addSelection(Field("id"))
               .addDirective(IncludeDirective(Variable("var1")))
@@ -67,13 +67,60 @@ void main() {
               .addDirective(IncludeDirective(Variable("var1")))
               .bake(),
           "... on Cat @include(if:\$var1) {id name}");
-          expect(
+      expect(
           InlineFragment(typeCondition: TypeCondition("Dog"))
               .addSelection(Field("id"))
               .addDirective(IncludeDirective(Variable("var1")))
               .addDirective(SkipDirective(Variable("var2")))
               .bake(),
           "... on Dog @include(if:\$var1) @skip(if:\$var2) {id}");
+    });
+  });
+
+  group('test Field', () {
+    test('test bake method with simple parameters', () {
+      expect(Field("id").bake(), "id");
+      expect(Field("id", alias: Name("alias")).bake(), "alias:id");
+    });
+    test('test bake method with arguments', () {
+      expect(Field("city").addArgument(Argument("id", NumberConst(1))).bake(),
+          "city(id:1)");
+      expect(
+          Field("city")
+              .addArgument(Argument("id", NumberConst(1)))
+              .addArgument(Argument("name", StringConst("test")))
+              .bake(),
+          "city(id:1,name:\"test\")");
+    });
+    test('test bake method with selection', () {
+      expect(
+          Field("city")
+              .addArgument(Argument("id", NumberConst(1)))
+              .addArgument(Argument("name", StringConst("test")))
+              .addSelection(Field("name"))
+              .addSelection(Field("title"))
+              .bake(),
+          "city(id:1,name:\"test\") {name title}");
+      expect(
+          Field("city")
+              .addSelection(Field("name"))
+              .addSelection(Field("title"))
+              .bake(),
+          "city {name title}");
+    });
+    test('test bake method with deep selection', () {
+      expect(
+          Field("city")
+              .addArgument(Argument("id", NumberConst(1)))
+              .addArgument(Argument("name", StringConst("test")))
+              .addSelection(Field("name")
+                  .addArgument(Argument("id", NumberConst(1)))
+                  .addSelection(Field("title")))
+              .addSelection(
+                Field("title").addSelection(Field("id")),
+              )
+              .bake(),
+          "city(id:1,name:\"test\") {name(id:1) {title} title {id}}");
     });
   });
 }
