@@ -45,7 +45,7 @@ abstract class Operation extends Definition {
     var _name = name != null && name.value.isNotEmpty ? " ${name.bake()}" : "";
 
     var _directives = (directives ?? []).map((item) => item.bake()).join(" ");
-    _directives = _directives != "" ? " $directives" : "";
+    _directives = _directives != "" ? " $_directives" : "";
 
     assert(selections != null && selections.isNotEmpty);
     var _selections = selections.map((item) => item.bake()).join(" ");

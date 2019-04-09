@@ -31,7 +31,7 @@ class Fragment extends Definition {
     assert(typeCondition != null);
 
     var _directives = (directives ?? []).map((item) => item.bake()).join(" ");
-    _directives = _directives.isNotEmpty ? " $directives" : "";
+    _directives = _directives.isNotEmpty ? " $_directives" : "";
 
     assert(selections != null && selections.isNotEmpty);
 

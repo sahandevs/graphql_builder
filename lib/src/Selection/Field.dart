@@ -38,7 +38,7 @@ class Field extends Selection {
     _arguments = _arguments.isEmpty ? "" : "($_arguments)";
     
     var _directives = (directives ?? []).map((item) => item.bake()).join(" ");
-    _directives = _directives.isNotEmpty ? " $directives" : "";
+    _directives = _directives.isNotEmpty ? " $_directives" : "";
 
     assert(selections != null && selections.isNotEmpty);
     var _selections = selections.map((item) => item.bake()).join(" ");
