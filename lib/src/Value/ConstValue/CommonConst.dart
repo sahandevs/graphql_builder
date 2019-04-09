@@ -27,7 +27,7 @@ class NumberConst extends ValueConst<num> {
 
   @override
   String bake() {
-    return value.toString();
+    return value == 0 ? "0" : value.toString();
   }
 }
 
