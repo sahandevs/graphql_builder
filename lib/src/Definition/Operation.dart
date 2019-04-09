@@ -1,3 +1,4 @@
+import 'package:graphql_builder/graphql_builder.dart';
 import 'package:graphql_builder/src/Definition/Definition.dart';
 import 'package:graphql_builder/src/Definition/VariableDefinition.dart';
 import 'package:graphql_builder/src/Directive/Directive.dart';
@@ -10,7 +11,9 @@ abstract class Operation extends Definition {
   List<Selection> selections;
   List<VariableDefinition> variables;
 
-  Operation({this.variables});
+  Operation({this.variables, String name}) {
+    this.name = (name != null && name.isNotEmpty) ? Name(name) : null;
+  }
 
   Operation addDirective(Directive directive) {
     if (directives == null) directives = [];
@@ -33,14 +36,17 @@ abstract class Operation extends Definition {
   String get typeName {
     assert(type != null);
     switch (type) {
-      case OperationType.Query: return "query";
-      case OperationType.Mutation: return "mutation";
-      case OperationType.Subscription: return "subscription";
+      case OperationType.Query:
+        return "query";
+      case OperationType.Mutation:
+        return "mutation";
+      case OperationType.Subscription:
+        return "subscription";
     }
     return "";
   }
 
-    @override
+  @override
   String bake() {
     var _name = name != null && name.value.isNotEmpty ? " ${name.bake()}" : "";
 
@@ -55,20 +61,28 @@ abstract class Operation extends Definition {
 
     return "$typeName$_name$_variables$_directives {$_selections}";
   }
-
 }
 
 class Query extends Operation {
+  Query({List<VariableDefinition> variables, String name})
+      : super(variables: variables, name: name);
+
   @override
   OperationType get type => OperationType.Query;
 }
 
 class Mutation extends Operation {
+  Mutation({List<VariableDefinition> variables, String name})
+      : super(variables: variables, name: name);
+
   @override
   OperationType get type => OperationType.Mutation;
 }
 
 class Subscription extends Operation {
+  Subscription({List<VariableDefinition> variables, String name})
+      : super(variables: variables, name: name);
+
   @override
   OperationType get type => OperationType.Subscription;
 }
