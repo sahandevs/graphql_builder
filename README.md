@@ -1,5 +1,8 @@
-Build GraphQL queries in dart.
+[![Coverage Status](https://coveralls.io/repos/github/SahandAkbarzadeh/graphql_builder/badge.svg?branch=master)](https://coveralls.io/github/SahandAkbarzadeh/graphql_builder?branch=master)
 [![Build Status](https://travis-ci.com/SahandAkbarzadeh/graphql_builder.svg?branch=master)](https://travis-ci.com/SahandAkbarzadeh/graphql_builder)
+
+Build GraphQL queries in dart.
+
 ## Example
 this code:
 ```dart
