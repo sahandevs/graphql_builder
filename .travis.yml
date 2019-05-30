@@ -3,6 +3,9 @@ language: dart
 dart:
   - 2.0.0
   - dev
+  
+before_install:
+  - chmod +x ./tool/travis.sh
 
 install:
   - gem install coveralls-lcov
