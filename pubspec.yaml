@@ -4,6 +4,9 @@ version: 1.0.0
 homepage: https://github.com/SahandAkbarzadeh/graphql_builder
 author: Sahand <email@example.com>
 
+dependencies:
+  coveralls: *
+
 environment:
   sdk: '>=2.1.0 <3.0.0'
 
