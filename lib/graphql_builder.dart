@@ -1,5 +1,5 @@
 library graphql_builder;
-
+import 'package:coveralls/coveralls.dart';
 export 'src/VariableType.dart';
 export 'src/TypeCondition.dart';
 export 'src/Name.dart';
