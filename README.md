@@ -1,5 +1,4 @@
-[![Coverage Status](https://coveralls.io/repos/github/SahandAkbarzadeh/graphql_builder/badge.svg?branch=master)](https://coveralls.io/github/SahandAkbarzadeh/graphql_builder?branch=master)
-[![Build Status](https://travis-ci.com/SahandAkbarzadeh/graphql_builder.svg?branch=master)](https://travis-ci.com/SahandAkbarzadeh/graphql_builder)
+[![Actions Status](https://github.com/SahandAkbarzadeh/graphql_builder/workflows/Dart%20CI/badge.svg)](https://github.com/SahandAkbarzadeh/graphql_builder/actions)
 
 Build GraphQL queries in dart.
 
